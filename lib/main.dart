@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ideate_food_delivery/mainScreen.dart';
+import 'package:ideate_food_delivery/Screens/mainScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.light,
             ),
       ),
-      home: const Screen1(),
+      home: const MainScreen(),
     );
   }
 }
