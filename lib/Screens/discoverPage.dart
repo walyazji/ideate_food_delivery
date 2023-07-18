@@ -215,6 +215,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30)),
                           child: Column(children: [
+                            SizedBox(height: 10),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(30),
                               child: Image.network(
@@ -274,8 +275,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
             BottomAppBar(
               height: 70,
-              elevation: 0,
-              color: Colors.transparent,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -289,7 +288,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     },
                     icon: Icon(
                       Icons.restaurant_rounded,
-                      size: selectButton == 0 ? 30 : 20,
+                      size: selectButton == 0 ? 35 : 25,
                     ),
                     color: selectButton == 0 ? context.orange : Colors.black,
                   ),
@@ -302,11 +301,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     icon: selectButton == 1
                         ? Icon(
                             Icons.star_rate_rounded,
-                            size: selectButton == 1 ? 30 : 20,
+                            size: selectButton == 1 ? 35 : 25,
                           )
                         : Icon(
                             Icons.star_border_rounded,
-                            size: selectButton == 1 ? 30 : 20,
+                            size: selectButton == 1 ? 35 : 25,
                           ),
                     color: selectButton == 1 ? context.orange : Colors.black,
                   ),
@@ -319,11 +318,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     icon: selectButton == 2
                         ? Icon(
                             Icons.local_mall_rounded,
-                            size: selectButton == 2 ? 30 : 20,
+                            size: selectButton == 2 ? 35 : 25,
                           )
                         : Icon(
                             Icons.local_mall_outlined,
-                            size: selectButton == 2 ? 30 : 20,
+                            size: selectButton == 2 ? 35 : 25,
                           ),
                     color: selectButton == 2 ? context.orange : Colors.black,
                   ),
@@ -336,11 +335,11 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     icon: selectButton == 3
                         ? Icon(
                             Icons.person,
-                            size: selectButton == 3 ? 30 : 20,
+                            size: selectButton == 3 ? 35 : 25,
                           )
                         : Icon(
                             Icons.person_outline_rounded,
-                            size: selectButton == 3 ? 30 : 20,
+                            size: selectButton == 3 ? 35 : 25,
                           ),
                     color: selectButton == 3 ? context.orange : Colors.black,
                   ),
