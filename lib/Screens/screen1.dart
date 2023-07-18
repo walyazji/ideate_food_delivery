@@ -10,7 +10,7 @@ class Screen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SharedBoardingMainScreen(context, 'Find your favorite restaurants',
-          'Order from your favorite restaurants with you device'),
+          'Order from your favorite restaurants\n with you device'),
     );
   }
 }

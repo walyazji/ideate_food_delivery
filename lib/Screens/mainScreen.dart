@@ -39,13 +39,12 @@ class _MainScreenState extends State<MainScreen> {
               return _pages[index % _pages.length];
             },
           ),
-          SizedBox(height: 10),
+          // SizedBox(height: 10),
           Positioned(
-            bottom: 130,
-            left: 220,
+            bottom: 220,
+            left: 170,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: List<Widget>.generate(
                 _pages.length,
                 (index) => Padding(
@@ -54,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
                     onTap: () {
                       _pageController.animateToPage(index,
                           duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInExpo);
+                          curve: Curves.easeIn);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
