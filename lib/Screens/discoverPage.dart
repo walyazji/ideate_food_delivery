@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:ideate_food_delivery/Widgets/categorie.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
+import 'meal_details.dart';
+
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
 
@@ -19,6 +21,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     'https://cdn4.vectorstock.com/i/1000x1000/28/93/donut-icon-vector-9992893.jpg',
     'https://cdn2.vectorstock.com/i/1000x1000/13/36/sushi-icon-isometric-3d-style-vector-9291336.jpg',
     'https://cdn-icons-png.flaticon.com/512/1206/1206237.png',
+    'https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg'
   ];
   List<String> categories = [
     'Burger',
@@ -30,7 +33,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     'Ramen'
   ];
 
-  int? selectedItem = 0;
+  static int? selectedItem = 0;
   int? selectButton = 0;
 
   String val = 'Dubai';
@@ -172,12 +175,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       itemBuilder: (ctx, index) {
                         return InkWell(
                           child: CardWidget(
-                              context,
-                              links[index],
-                              categories[index],
-                              selectedItem == index
-                                  ? const Color(0xFFFF6838)
-                                  : Colors.white),
+                            context,
+                            links[index],
+                            categories[index],
+                            selectedItem == index
+                                ? const Color(0xFFFF6838)
+                                : Colors.white,
+                          ),
                           onTap: () {
                             setState(() {
                               selectedItem = index;
@@ -200,6 +204,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               ],
             ),
             Expanded(
+              // كان كونتينر
+              // ignore: sized_box_for_whitespace
               child: Container(
                 width: 340,
                 child: ListView.builder(
@@ -207,67 +213,75 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
-                      return Container(
-                        width: 340,
-                        alignment: Alignment.center,
-                        child: Card(
-                          elevation: 1,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Column(children: [
-                            SizedBox(height: 10),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image.network(
-                                links[0],
-                                height: 200,
-                                fit: BoxFit.fill,
+                      return InkWell(
+                        onTap: () {
+                          Get.to(MealDetails());
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Card(
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Column(children: [
+                              // const SizedBox(height: 10),
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                                child: Image.network(
+                                  links[6],
+                                  // height: 200,
+                                  fit: BoxFit.contain,
+                                ),
                               ),
-                            ),
-                            Stack(
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 20, 20, 15),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const SizedBox(width: 5),
-                                          Text(
-                                            'Chillox Burger',
-                                            style: context.subHeadingStyleBlack,
-                                          ),
-                                          const SizedBox(width: 130),
-                                          Icon(
-                                            Icons.star_rounded,
-                                            color: context.orange,
-                                          ),
-                                          Text(
-                                            '4.9',
-                                            style: context.subTitleStyleBlack,
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          const SizedBox(width: 5),
-                                          Text(
-                                            '${categories[0]}' '- FastFood',
-                                            style: context.titleStyleGrey,
-                                          ),
-                                          const SizedBox(width: 140),
-                                          const Text('10 min')
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ]),
+                              Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        20, 20, 20, 15),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              'Chillox Burger',
+                                              style:
+                                                  context.subHeadingStyleBlack,
+                                            ),
+                                            const SizedBox(width: 130),
+                                            Icon(
+                                              Icons.star_rounded,
+                                              color: context.orange,
+                                            ),
+                                            Text(
+                                              '4.9',
+                                              style: context.subTitleStyleBlack,
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              '${categories[0]}' '- FastFood',
+                                              style: context.titleStyleGrey,
+                                            ),
+                                            const SizedBox(width: 140),
+                                            const Text('10 min')
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ]),
+                          ),
                         ),
                       );
                     }),

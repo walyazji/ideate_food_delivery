@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ideate_food_delivery/Screens/SignIn.dart';
 import 'package:ideate_food_delivery/Screens/mainScreen.dart';
 
 void main() {
