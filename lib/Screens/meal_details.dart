@@ -25,7 +25,7 @@ class _MealDetailsState extends State<MealDetails> {
     'Sausage'
   ];
   int selectedItem = 0;
-
+  int priceOfMeal = 5;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,82 +86,183 @@ class _MealDetailsState extends State<MealDetails> {
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 50,
             ),
-            Column(
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(left: 42),
-                      child: Text(
-                        'Menu',
-                        style: context.headingStyleBlack,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 211,
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.favorite_border_rounded),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.search_rounded),
-                      color: Colors.grey,
-                    )
-                  ],
-                ),
-                const SizedBox(height: 10),
                 Container(
-                  margin: const EdgeInsets.only(left: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    'Menu',
+                    style: context.headingStyleBlack,
                   ),
-                  child: SizedBox(
-                    height: 70,
+                ),
+                const SizedBox(
+                  width: 211,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.favorite_border_rounded),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search_rounded),
+                  color: Colors.grey,
+                )
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(
+              margin: const EdgeInsets.only(left: 20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SizedBox(
+                height: 50,
+                width: double.infinity,
+                child: ListView.builder(
+                  itemCount: categories.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (ctx, index) {
+                    return InkWell(
+                      child: CategoriesWidget(
+                          context,
+                          categories[index],
+                          index == selectedItem
+                              ? const Color(0xFFFF6838)
+                              : Colors.white,
+                          index),
+                      onTap: () {
+                        setState(() {
+                          selectedItem = index;
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: Stack(
+                children: [
+                  const SizedBox(height: 10),
+                  Container(
                     width: double.infinity,
-                    child: ListView.builder(
-                      itemCount: categories.length,
-                      scrollDirection: Axis.horizontal,
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    // padding: EdgeInsets.only(right: 4, left: 4),
+
+                    // height: 600,
+                    child: GridView.builder(
                       shrinkWrap: true,
-                      itemBuilder: (ctx, index) {
+                      itemCount: categories.length + 1,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 3 / 5.4,
+                        // crossAxisSpacing: 1,
+                        // mainAxisSpacing: 2.0,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
                         return InkWell(
-                          child: CategoriesWidget(
-                              context,
-                              categories[index],
-                              index == selectedItem
-                                  ? const Color(0xFFFF6838)
-                                  : Colors.white,
-                              index),
                           onTap: () {
-                            setState(() {
-                              selectedItem = index;
-                            });
+                            // Get.to(MealDetails());
                           },
+                          child: Card(
+                            color: Color.fromARGB(226, 51, 49, 49),
+                            elevation: 1,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 20),
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(30),
+                                  ),
+                                  child: Image.network(
+                                    // height: 150,
+                                    'https://www.freepnglogos.com/uploads/burger-png/download-hamburger-burger-png-image-png-image-pngimg-15.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Chicken Burger',
+                                        style: context.headingStyleWhite,
+                                      ),
+                                      Text(
+                                        'chicken patty &\n special sauce',
+                                        style: context.subHeadingStyleWhite,
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(30)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (priceOfMeal > 5) {
+                                                    priceOfMeal -= 5;
+                                                  }
+                                                });
+                                              },
+                                              icon: const Icon(
+                                                Icons.minimize_rounded,
+                                              ),
+                                            ),
+                                            Text(
+                                              '$priceOfMeal',
+                                              style: context.subTitleStyleGrey,
+                                            ),
+                                            IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  priceOfMeal += 5;
+                                                });
+                                              },
+                                              icon: const Icon(Icons.add),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         );
                       },
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
-            Expanded(
-                child: GridView.builder(
-              itemCount: categories.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 4.0,
-                  mainAxisSpacing: 4.0),
-              itemBuilder: (BuildContext context, int index) {
-                return Image.network(
-                    'https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg');
-              },
-            )),
           ],
         ),
       ),
