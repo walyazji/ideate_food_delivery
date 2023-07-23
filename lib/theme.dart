@@ -5,7 +5,10 @@ extension ContextHelper on BuildContext {
   get orange => const Color(0xFFFF6838);
   get headingStyleBlack => GoogleFonts.tajawal(
         textStyle: const TextStyle(
-            color: Colors.black, fontSize: 27, fontWeight: FontWeight.w900),
+          color: Colors.black,
+          fontSize: 27,
+          fontWeight: FontWeight.w900,
+        ),
       );
   get headingStyleOrange => GoogleFonts.tajawal(
         textStyle:

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ideate_food_delivery/Widgets/categorie.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
-import 'meal_details.dart';
+import 'restaurantPage.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -161,7 +161,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  margin: const EdgeInsets.only(left: 40),
+                  margin: const EdgeInsets.only(left: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -194,7 +194,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 ),
                 const SizedBox(height: 40),
                 Container(
-                  padding: const EdgeInsets.only(left: 40),
+                  padding: const EdgeInsets.only(left: 20),
                   child: Text(
                     'Popular',
                     style: context.headingStyleBlack,
@@ -207,6 +207,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               // كان كونتينر
               // ignore: sized_box_for_whitespace
               child: Container(
+                // padding: EdgeInsets.only(left: ),
                 width: 340,
                 child: ListView.builder(
                     itemCount: categories.length,
@@ -215,9 +216,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     itemBuilder: (ctx, index) {
                       return InkWell(
                         onTap: () {
-                          Get.to(MealDetails());
+                          Get.to(RestaurantScreen());
                         },
                         child: Container(
+                          // padding: EdgeInsets.only(left: 20),
                           alignment: Alignment.center,
                           child: Card(
                             elevation: 1,
