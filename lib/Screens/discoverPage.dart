@@ -50,28 +50,46 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      backgroundColor: const Color(0xFFFAFAFA)),
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.filter_list,
-                    color: Colors.black,
+                // const SizedBox(width: 20),
+                // ElevatedButton(
+                //   style: ElevatedButton.styleFrom(
+                //       elevation: 0,
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(15)),
+                //       backgroundColor: const Color(0xFFFAFAFA)),
+                //   onPressed: () {},
+                //   child: const Icon(
+                // Icons.filter_list,
+                //     color: Colors.black,
+                //   ),
+                // ),
+                // const SizedBox(
+                //   width: 50,
+                // ),
+                // const Icon(
+                //   Icons.location_on_outlined,
+                //   size: 23,
+                //   color: Color(0xFFFF6838),
+                // ),Row(
+
+                InkWell(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10),
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromARGB(255, 231, 229, 229),
+                    ),
+                    child: const Icon(
+                      Icons.filter_list,
+                      size: 30,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                const Icon(
-                  Icons.location_on_outlined,
-                  size: 23,
-                  color: Color(0xFFFF6838),
+                  onTap: () => Get.back(),
                 ),
                 DropdownButton(
                   value: val,
@@ -103,21 +121,37 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     });
                   },
                 ),
-                const SizedBox(width: 60),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      backgroundColor: const Color(0xFFFAFAFA)),
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
+                InkWell(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromARGB(255, 231, 229, 229),
+                    ),
+                    child: const Icon(
+                      Icons.notifications_none_outlined,
+                      size: 30,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ],
             ),
+            // const SizedBox(width: 60),
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //       elevation: 0,
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(15)),
+            //       backgroundColor: const Color(0xFFFAFAFA)),
+            //   onPressed: () {},
+            //   child: const Icon(
+            //     Icons.notifications_outlined,
+            //     color: Colors.black,
+            //   ),
+            // ),
             const SizedBox(height: 40),
             Text(
               'What do you want for',
@@ -129,7 +163,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
             const SizedBox(height: 10),
             Container(
-              width: 330,
+              width: 380,
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(15)),
               child: TextField(
@@ -153,7 +187,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               children: [
                 const SizedBox(height: 20),
                 Container(
-                  padding: const EdgeInsets.only(left: 40),
+                  padding: const EdgeInsets.only(left: 20),
                   child: Text(
                     'Categories',
                     style: context.headingStyleBlack,
@@ -166,7 +200,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: SizedBox(
-                    height: 90,
+                    height: 70,
                     width: double.infinity,
                     child: ListView.builder(
                       itemCount: categories.length - 1,
@@ -208,7 +242,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               // ignore: sized_box_for_whitespace
               child: Container(
                 // padding: EdgeInsets.only(left: ),
-                width: 340,
+                width: 380,
                 child: ListView.builder(
                     itemCount: categories.length,
                     scrollDirection: Axis.vertical,
