@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ideate_food_delivery/Screens/favoritePage.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
 import '../Widgets/categorie.dart';
@@ -36,7 +37,13 @@ class _SearchScreenState extends State<SearchScreen> {
     '4.8',
     '5.0',
   ];
+  List<String> price = [
+    '\$',
+    '\$\$',
+    '\$\$\$',
+  ];
   int selectRate = 0;
+  int selectedPrice = 0;
   static int? selectedItem = 0;
   String val = 'Dubai';
   @override
@@ -46,75 +53,81 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 231, 229, 229),
+            // const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                        color: Colors.black,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.black,
-                    ),
+                    onTap: () => Get.back(),
                   ),
-                  onTap: () => Get.back(),
-                ),
-                DropdownButton(
-                  value: val,
-                  borderRadius: BorderRadius.circular(15),
-                  alignment: Alignment.topCenter,
-                  dropdownColor: Colors.white,
-                  items: cities
-                      .map<DropdownMenuItem<String>>(
-                        (value) => DropdownMenuItem<String>(
-                          alignment: Alignment.center,
-                          value: value.toString(),
-                          child: Text(
-                            value,
-                            style: const TextStyle(color: Colors.deepOrange),
+                  DropdownButton(
+                    value: val,
+                    borderRadius: BorderRadius.circular(15),
+                    alignment: Alignment.topCenter,
+                    dropdownColor: Colors.white,
+                    items: cities
+                        .map<DropdownMenuItem<String>>(
+                          (value) => DropdownMenuItem<String>(
+                            alignment: Alignment.center,
+                            value: value.toString(),
+                            child: Text(
+                              value,
+                              style: const TextStyle(color: Colors.deepOrange),
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Color(0xFFFF6838),
-                  ),
-                  iconSize: 25,
-                  elevation: 1,
-                  style: context.subHeadingStyleOrange,
-                  onChanged: (newValue) {
-                    setState(() {
-                      val = newValue!;
-                    });
-                  },
-                ),
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 231, 229, 229),
+                        )
+                        .toList(),
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Color(0xFFFF6838),
                     ),
-                    child: const Icon(
-                      Icons.notifications_none_outlined,
-                      size: 30,
-                      color: Colors.black,
-                    ),
+                    iconSize: 25,
+                    elevation: 1,
+                    style: context.subHeadingStyleOrange,
+                    onChanged: (newValue) {
+                      setState(() {
+                        val = newValue!;
+                      });
+                    },
                   ),
-                  // onTap: () => Get.to(),
-                ),
-              ],
+                  InkWell(
+                    onTap: () {
+                      Get.to(const FavoriteScreen());
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: const Icon(
+                        Icons.notifications_none_outlined,
+                        size: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                    // onTap: () => Get.to(),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 40),
             Row(
@@ -148,187 +161,226 @@ class _SearchScreenState extends State<SearchScreen> {
                     suffixIcon: IconButton(
                       onPressed: () {
                         showModalBottomSheet(
-                            useSafeArea: true,
-                            isScrollControlled: true,
-                            context: context,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20),
-                              ),
+                          useSafeArea: true,
+                          isScrollControlled: true,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
                             ),
-                            builder: (context) =>
-                                StatefulBuilder(builder: (BuildContext context,
-                                    void Function(void Function()) setState) {
-                                  return Container(
-                                    height: MediaQuery.sizeOf(context).height *
-                                        0.77,
-                                    // padding: const EdgeInsets.all(10),
-                                    child: Column(
+                          ),
+                          builder: (context) => StatefulBuilder(
+                            builder: (BuildContext context,
+                                void Function(void Function()) setState) {
+                              return Container(
+                                margin: const EdgeInsets.only(left: 20),
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.77,
+                                // padding: const EdgeInsets.all(10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  // crossAxisAlignment:
+                                  //     CrossAxisAlignment.stretch,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    const SizedBox(height: 20),
+                                    Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                          MainAxisAlignment.spaceBetween,
                                       // crossAxisAlignment:
                                       //     CrossAxisAlignment.stretch,
-                                      mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        SizedBox(height: 20),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          // crossAxisAlignment:
-                                          //     CrossAxisAlignment.stretch,
-                                          children: [
-                                            Text('Filter',
-                                                style:
-                                                    context.headingStyleBlack),
-                                            IconButton(
-                                                onPressed: () {
-                                                  Get.back();
-                                                },
-                                                icon: const Icon(
-                                                    Icons.clear_rounded)),
-                                          ],
-                                        ),
-                                        // Container(
-                                        //   height: 250,
-                                        //   width: double.maxFinite,
-                                        //   // margin: const EdgeInsets.only(left: 20),
-                                        //   decoration: BoxDecoration(
-                                        //     borderRadius:
-                                        //         BorderRadius.circular(15),
-                                        //   ),
-                                        //   child: Container(
-                                        //     // margin: EdgeInsets.only(right: 8),
-                                        //     height: 20,
-                                        //     width: 30,
-                                        //     child: GridView.builder(
-                                        //       itemCount: categories.length,
-                                        //       scrollDirection: Axis.vertical,
-                                        //       shrinkWrap: true,
-                                        //       gridDelegate:
-                                        //           const SliverGridDelegateWithFixedCrossAxisCount(
-                                        //               // childAspectRatio: 1.1 / 1,
-                                        //               mainAxisSpacing: 5,
-                                        //               crossAxisSpacing: 2,
-                                        //               crossAxisCount: 2),
-                                        //       itemBuilder: (ctx, index) =>
-                                        //           InkWell(
-                                        //         onTap: () {
-                                        //           setState(() {
-                                        //             selectedItem = index;
-                                        //           });
-                                        //         },
-                                        //         child: CardWidget(
-                                        //           context,
-                                        //           links[index],
-                                        //           categories[index],
-                                        //           selectedItem == index
-                                        //               ? const Color(0xFFFF6838)
-                                        //               : Colors.white,
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 20),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
-                                          child: SizedBox(
-                                            height: 70,
-                                            width: double.infinity,
-                                            child: ListView.builder(
-                                              semanticChildCount: 3,
-                                              itemCount: categories.length,
-                                              scrollDirection: Axis.horizontal,
-                                              shrinkWrap: true,
-                                              itemBuilder: (ctx, index) {
-                                                return InkWell(
-                                                  child: CardWidget(
-                                                    context,
-                                                    links[index],
-                                                    categories[index],
-                                                    selectedItem == index
-                                                        ? const Color(
-                                                            0xFFFF6838)
-                                                        : Colors.white,
-                                                  ),
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selectedItem = index;
-                                                    });
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 40),
-                                        Container(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: Text(
-                                            'Rating',
-                                            style: context.headingStyleBlack,
-                                          ),
-                                        ),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 20),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
-                                          child: SizedBox(
-                                            height: 50,
-                                            width: double.infinity,
-                                            child: ListView.builder(
-                                              itemCount: rating.length,
-                                              scrollDirection: Axis.horizontal,
-                                              shrinkWrap: true,
-                                              itemBuilder: (ctx, index) {
-                                                return InkWell(
-                                                  child: Center(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          color: selectRate ==
-                                                                  index
-                                                              ? const Color(
-                                                                  0xFFFF6838)
-                                                              : Colors.white,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30)),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      width: 75,
-                                                      height: 50,
-                                                      child: Text(
-                                                        rating[index],
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: context
-                                                            .subTitleStyleBlack,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selectRate = index;
-                                                    });
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
+                                        Text('Filter',
+                                            style: context.headingStyleBlack),
+                                        IconButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            icon: const Icon(
+                                                Icons.clear_rounded)),
                                       ],
                                     ),
-                                  );
-                                }));
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: SizedBox(
+                                        height: 70,
+                                        width: double.infinity,
+                                        child: ListView.builder(
+                                          semanticChildCount: 3,
+                                          itemCount: categories.length,
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemBuilder: (ctx, index) {
+                                            // For Meals
+                                            return InkWell(
+                                              child: CardWidget(
+                                                context,
+                                                links[index],
+                                                categories[index],
+                                                selectedItem == index
+                                                    ? const Color(0xFFFF6838)
+                                                    : Colors.white,
+                                              ),
+                                              onTap: () {
+                                                setState(() {
+                                                  selectedItem = index;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        'Rating',
+                                        style: context.headingStyleBlack,
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: SizedBox(
+                                        height: 50,
+                                        width: double.infinity,
+                                        child: ListView.builder(
+                                          itemCount: rating.length,
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemBuilder: (ctx, index) {
+                                            // For Rating
+                                            return InkWell(
+                                              child: Center(
+                                                child: Container(
+                                                  margin: EdgeInsets.only(
+                                                      right: 10),
+                                                  decoration: BoxDecoration(
+                                                      color: selectRate == index
+                                                          ? const Color(
+                                                              0xFFFF6838)
+                                                          : Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30)),
+                                                  alignment: Alignment.center,
+                                                  width: 75,
+                                                  height: 50,
+                                                  child: Text(
+                                                    rating[index],
+                                                    textAlign: TextAlign.center,
+                                                    style: context
+                                                        .subTitleStyleBlack,
+                                                  ),
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                setState(() {
+                                                  selectRate = index;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 20),
+                                    Container(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(
+                                        'Price',
+                                        style: context.headingStyleBlack,
+                                      ),
+                                    ),
+                                    // SizedBox(height: 10),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: SizedBox(
+                                        height: 50,
+                                        width: double.infinity,
+                                        child: ListView.builder(
+                                          itemCount: price.length,
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          itemBuilder: (ctx, index) {
+                                            return InkWell(
+                                              child: Center(
+                                                child: Container(
+                                                  margin: EdgeInsets.only(
+                                                      right: 10),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        selectedPrice == index
+                                                            ? const Color(
+                                                                0xFFFF6838)
+                                                            : Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  width: 75,
+                                                  height: 50,
+                                                  child: Text(
+                                                    price[index],
+                                                    textAlign: TextAlign.center,
+                                                    style: context
+                                                        .subTitleStyleBlack,
+                                                  ),
+                                                ),
+                                              ),
+                                              onTap: () {
+                                                setState(() {
+                                                  selectedPrice = index;
+                                                });
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 200),
+                                    Container(
+                                      margin: EdgeInsets.only(right: 20),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(360, 70),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          'Get Started',
+                                          style: context.subHeadingStyleWhite,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          selectedItem = 0;
+                                          selectRate = 0;
+                                          selectedPrice = 0;
+                                        });
+                                      },
+                                      child: Text('Cancel',
+                                          style: context.headingStyleBlack),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        );
                       },
                       icon: const Icon(
                         Icons.tune_rounded,

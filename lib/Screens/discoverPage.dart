@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ideate_food_delivery/Screens/cartPage.dart';
+import 'package:ideate_food_delivery/Screens/favoritePage.dart';
 import 'package:ideate_food_delivery/Widgets/categorie.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
@@ -45,99 +47,99 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // const SizedBox(width: 20),
-                // ElevatedButton(
-                //   style: ElevatedButton.styleFrom(
-                //       elevation: 0,
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(15)),
-                //       backgroundColor: const Color(0xFFFAFAFA)),
-                //   onPressed: () {},
-                //   child: const Icon(
-                // Icons.filter_list,
-                //     color: Colors.black,
-                //   ),
-                // ),
-                // const SizedBox(
-                //   width: 50,
-                // ),
-                // const Icon(
-                //   Icons.location_on_outlined,
-                //   size: 23,
-                //   color: Color(0xFFFF6838),
-                // ),Row(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // const SizedBox(width: 20),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //       elevation: 0,
+                  //       shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(15)),
+                  //       backgroundColor: const Color(0xFFFAFAFA)),
+                  //   onPressed: () {},
+                  //   child: const Icon(
+                  // Icons.filter_list,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   width: 50,
+                  // ),
+                  // const Icon(
+                  //   Icons.location_on_outlined,
+                  //   size: 23,
+                  //   color: Color(0xFFFF6838),
+                  // ),Row(
 
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 231, 229, 229),
+                  InkWell(
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: const Icon(
+                        Icons.filter_list,
+                        size: 30,
+                        color: Colors.black,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.filter_list,
-                      size: 30,
-                      color: Colors.black,
-                    ),
+                    onTap: () => Get.back(),
                   ),
-                  onTap: () => Get.back(),
-                ),
-                DropdownButton(
-                  value: val,
-                  borderRadius: BorderRadius.circular(15),
-                  alignment: Alignment.topCenter,
-                  dropdownColor: Colors.white,
-                  items: cities
-                      .map<DropdownMenuItem<String>>(
-                        (value) => DropdownMenuItem<String>(
-                          alignment: Alignment.center,
-                          value: value.toString(),
-                          child: Text(
-                            value,
-                            style: const TextStyle(color: Colors.deepOrange),
+                  DropdownButton(
+                    value: val,
+                    borderRadius: BorderRadius.circular(15),
+                    alignment: Alignment.topCenter,
+                    dropdownColor: Colors.white,
+                    items: cities
+                        .map<DropdownMenuItem<String>>(
+                          (value) => DropdownMenuItem<String>(
+                            alignment: Alignment.center,
+                            value: value.toString(),
+                            child: Text(
+                              value,
+                              style: const TextStyle(color: Colors.deepOrange),
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Color(0xFFFF6838),
-                  ),
-                  iconSize: 25,
-                  elevation: 1,
-                  style: context.subHeadingStyleOrange,
-                  onChanged: (newValue) {
-                    setState(() {
-                      val = newValue!;
-                    });
-                  },
-                ),
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 231, 229, 229),
+                        )
+                        .toList(),
+                    icon: const Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Color(0xFFFF6838),
                     ),
-                    child: const Icon(
-                      Icons.notifications_none_outlined,
-                      size: 30,
-                      color: Colors.black,
+                    iconSize: 25,
+                    elevation: 1,
+                    style: context.subHeadingStyleOrange,
+                    onChanged: (newValue) {
+                      setState(() {
+                        val = newValue!;
+                      });
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: const Icon(
+                        Icons.notifications_none_outlined,
+                        size: 30,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             // const SizedBox(width: 60),
             // ElevatedButton(
@@ -344,6 +346,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                   IconButton(
                     onPressed: () {
+                      Get.to(const FavoriteScreen());
                       setState(() {
                         selectButton = 1;
                       });
@@ -361,6 +364,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   ),
                   IconButton(
                     onPressed: () {
+                      Get.to(const CartScreen());
                       setState(() {
                         selectButton = 2;
                       });
