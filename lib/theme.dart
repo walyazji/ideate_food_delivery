@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 extension ContextHelper on BuildContext {
-  get orange => const Color(0xFFFF6838);
+  get orange => Color.fromARGB(255, 222, 76, 31);
   get headingStyleBlack => GoogleFonts.tajawal(
         textStyle: const TextStyle(
           color: Colors.black,
@@ -55,11 +55,17 @@ extension ContextHelper on BuildContext {
   get titleStyleGrey => GoogleFonts.tajawal(
         textStyle: const TextStyle(
             color: Color.fromARGB(255, 171, 170, 170),
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w500),
       );
   get subTitleStyleBlack => GoogleFonts.tajawal(
         textStyle: const TextStyle(
             color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+      );
+  get subTitleStyleGreyCustom => GoogleFonts.tajawal(
+        textStyle: const TextStyle(
+            color: Color.fromARGB(255, 171, 170, 170),
+            fontSize: 16,
+            fontWeight: FontWeight.w500),
       );
 }

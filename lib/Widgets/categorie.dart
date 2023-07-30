@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ideate_food_delivery/Screens/discoverPage.dart';
-import 'package:ideate_food_delivery/Screens/restaurantPage.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
 SafeArea CardWidget(BuildContext context, String url, String title, Color c) {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
+import 'payPage.dart';
+
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
@@ -92,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             const SizedBox(height: 30),
             Text(
-              'Order now and   ',
+              '   Order now and   ',
               style: context.headingStyleBlack,
             ),
             Row(
@@ -109,119 +111,276 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
             const SizedBox(height: 10),
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Transform.scale(
-                  scale: 1.4,
-                  child: Checkbox(
-                    side: const BorderSide(style: BorderStyle.solid),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    activeColor: context.orange,
-                    value: checkVal,
-                    onChanged: (value) {
-                      setState(() {
-                        checkVal = value!;
-                      });
-                    },
-                  ),
-                ),
-                Container(
-                  height: 90,
-                  width: 90,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: const Color.fromARGB(226, 51, 49, 49)),
-                  child: const CircleAvatar(
-                    backgroundColor: Colors.red,
-                    maxRadius: 20,
-                    backgroundImage: NetworkImage(
-                        'https://i.pinimg.com/originals/c5/cc/20/c5cc2005ad651b73d324513750de085e.png',
-                        scale: 0.5),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            ListView.builder(
+              itemCount: 5,
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemBuilder: (ctx, index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      'Chicken Burger',
-                      style: context.subHeadingStyleBlack,
+                    Transform.scale(
+                      scale: 1.4,
+                      child: Checkbox(
+                        side: const BorderSide(style: BorderStyle.solid),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        activeColor: context.orange,
+                        value: checkVal,
+                        onChanged: (value) {
+                          setState(() {
+                            checkVal = value!;
+                          });
+                        },
+                      ),
                     ),
-                    Text(
-                      'chicken patty & special\n sauce',
-                      style: context.subTitleStyleGrey,
+                    Container(
+                      height: 90,
+                      width: 90,
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: const Color.fromARGB(226, 51, 49, 49)),
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.red,
+                        maxRadius: 20,
+                        backgroundImage: NetworkImage(
+                            'https://i.pinimg.com/originals/c5/cc/20/c5cc2005ad651b73d324513750de085e.png',
+                            scale: 0.5),
+                      ),
                     ),
-                    Text(
-                      '\$ 4.99',
-                      style: context.subHeadingStyleOrange,
+                    const SizedBox(width: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Chicken Burger',
+                          style: context.subHeadingStyleBlack,
+                        ),
+                        Text(
+                          'chicken patty & special\n sauce',
+                          style: context.subTitleStyleGrey,
+                        ),
+                        Text(
+                          '\$ 4.99',
+                          style: context.subHeadingStyleOrange,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.only(top: 4),
+                      alignment: Alignment.center,
+                      width: 25,
+                      height: 25,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+
+                        // borderRadius: BorderRadius.circular(30),
+                        color: Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: Text(
+                        '$countItems',
+                        style: context.subHeadingStyleOrange,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Container(
+                      width: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: const Color.fromARGB(255, 231, 229, 229),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            icon: const Icon(
+                              Icons.add,
+                              size: 15,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                countItems++;
+                              });
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.minimize_rounded,
+                              size: 15,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                if (countItems > 1)
+                                  countItems--;
+                                else
+                                  null;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(width: 10),
-                Container(
-                  alignment: Alignment.center,
-                  width: 25,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-
-                    // borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 231, 229, 229),
-                  ),
-                  child: Text(
-                    '$countItems',
-                    style: context.subHeadingStyleOrange,
-                  ),
-                ),
-                SizedBox(width: 5),
-                Container(
-                  width: 30,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: const Color.fromARGB(255, 231, 229, 229),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.add,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            countItems++;
-                          });
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.minimize_rounded,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            if (countItems > 1)
-                              countItems--;
-                            else
-                              null;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                )
-              ],
+              ),
             ),
-            const Row(
-              children: [],
-            ),
-            const Row(
-              children: [],
+            Container(
+              width: 360,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 231, 229, 229),
+                  borderRadius: BorderRadius.circular(30)),
+              margin: const EdgeInsets.symmetric(vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: const Color.fromARGB(255, 231, 229, 229),
+                      fixedSize: const Size(180, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Add More Food',
+                      style: context.subHeadingStyleBlack,
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: context.orange,
+                        fixedSize: const Size(180, 50),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                    onPressed: () {
+                      setState(() {
+                        showModalBottomSheet(
+                          useSafeArea: true,
+                          isScrollControlled: true,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          builder: (context) => Container(
+                            padding: const EdgeInsets.all(20),
+                            height: MediaQuery.sizeOf(context).height * 0.30,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'SubTotal',
+                                      style: context.subHeadingStyleBlack,
+                                    ),
+                                    Text(
+                                      '\$ 49.99',
+                                      style: context.subTitleStyleGrey,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Delivery Charge',
+                                      style: context.subHeadingStyleBlack,
+                                    ),
+                                    Text(
+                                      'Free',
+                                      style: context.subTitleStyleGrey,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Tax',
+                                      style: context.subHeadingStyleBlack,
+                                    ),
+                                    Text(
+                                      '\$ 5.06',
+                                      style: context.subTitleStyleGrey,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                const Divider(
+                                  color: Colors.grey,
+                                  height: 10,
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Total',
+                                      style: context.subHeadingStyleBlack,
+                                    ),
+                                    Text(
+                                      '\$ 55.05',
+                                      style: context.subTitleStyleGrey,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      backgroundColor: context.orange,
+                                      fixedSize: const Size(200, 50),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15))),
+                                  onPressed: () {
+                                    Get.to(const PayScreen());
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        'Processed',
+                                        style: context.subHeadingStyleWhite,
+                                      ),
+                                      Text(
+                                        '\$55.05',
+                                        style: context.subHeadingStyleWhite,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                    },
+                    child:
+                        Text('Checkout', style: context.subHeadingStyleWhite),
+                  ),
+                ],
+              ),
             ),
           ],
         )),

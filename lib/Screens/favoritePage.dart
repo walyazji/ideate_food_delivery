@@ -119,15 +119,20 @@ class _FavoriteScreenState extends State<FavoriteScreen>
             ),
             const SizedBox(height: 10),
             Container(
+              width: 360,
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 231, 229, 229),
+                  borderRadius: BorderRadius.circular(30)),
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                        elevation: 0,
                         backgroundColor: selectedListView == 0
                             ? context.orange
-                            : Colors.white,
+                            : Color.fromARGB(255, 231, 229, 229),
                         fixedSize: Size(180, 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -145,9 +150,10 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                        elevation: 0,
                         backgroundColor: selectedListView == 1
                             ? context.orange
-                            : Colors.white,
+                            : Color.fromARGB(255, 231, 229, 229),
                         fixedSize: Size(180, 50),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15))),
@@ -157,7 +163,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                       });
                     },
                     child: Text(
-                      'Nearby Restaurant',
+                      'Favorite',
                       style: selectedListView == 1
                           ? context.subHeadingStyleWhite
                           : context.subHeadingStyleOrange,

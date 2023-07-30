@@ -257,7 +257,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             return InkWell(
                                               child: Center(
                                                 child: Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       right: 10),
                                                   decoration: BoxDecoration(
                                                       color: selectRate == index
@@ -288,7 +288,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 20),
+                                    const SizedBox(height: 20),
                                     Container(
                                       alignment: Alignment.topLeft,
                                       child: Text(
@@ -312,7 +312,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                             return InkWell(
                                               child: Center(
                                                 child: Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       right: 10),
                                                   decoration: BoxDecoration(
                                                     color:
@@ -345,13 +345,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 200),
+                                    const SizedBox(height: 200),
                                     Container(
-                                      margin: EdgeInsets.only(right: 20),
+                                      margin: const EdgeInsets.only(right: 20),
                                       child: ElevatedButton(
                                         onPressed: () {},
                                         style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(360, 70),
+                                          fixedSize: const Size(360, 70),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(20),
@@ -363,7 +363,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10),
+                                    const SizedBox(height: 10),
                                     TextButton(
                                       onPressed: () {
                                         setState(() {
