@@ -5,6 +5,7 @@ import 'package:ideate_food_delivery/Screens/favoritePage.dart';
 import 'package:ideate_food_delivery/Widgets/categorie.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
+import 'profilePage.dart';
 import 'restaurantPage.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -383,6 +384,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   IconButton(
                     onPressed: () {
                       setState(() {
+                        Get.to(const ProfileScreen());
                         selectButton = 3;
                       });
                     },
