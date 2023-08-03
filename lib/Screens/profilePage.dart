@@ -15,7 +15,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  int? selectButton = 0;
+  int? selectButton = 3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
