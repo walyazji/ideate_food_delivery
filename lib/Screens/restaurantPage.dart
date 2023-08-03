@@ -34,61 +34,190 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
       body: SafeArea(
         child: Stack(
           children: [
+            SizedBox(
+              height: 250,
+              width: double.infinity,
+              child: Opacity(
+                opacity: 0.5,
+                child: Image.network(
+                  'https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            fixedSize: const Size(20, 40)),
-                        child: const Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                          color: Colors.black,
+                      InkWell(
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back,
+                            size: 30,
+                            color: Colors.black,
+                          ),
                         ),
-                        onPressed: () {
-                          // Get.to(const DiscoverScreen());
-                          Navigator.pop(context);
-                        },
+                        onTap: () => Get.back(),
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            fixedSize: const Size(20, 40)),
-                        child: const Icon(
-                          Icons.local_mall_rounded,
-                          size: 30,
-                          color: Colors.black,
+                      InkWell(
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                          ),
+                          child: const Icon(
+                            Icons.local_mall_outlined,
+                            size: 30,
+                            color: Colors.black,
+                          ),
                         ),
-                        onPressed: () {
-                          Get.to(const DiscoverScreen());
-                        },
+                        // onTap: () => Get.back(),
                       ),
                     ],
                   ),
-                  // SizedBox(height: 100),
-                  // Container(
-                  //   decoration:
-                  //       BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                  //   height: 200,
-                  //   width: 400,
-                  //   child: Card(
-                  //     elevation: 2,
-                  //     child: Column(
-                  //       mainAxisAlignment: MainAxisAlignment.center,
-                  //       children: [Text('data')],
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 100),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 180),
+                        height: MediaQuery.sizeOf(context).height * 0.17,
+                        width: MediaQuery.sizeOf(context).width * 0.9,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const SizedBox(height: 30),
+                            Text(
+                              'Chillox',
+                              style: context.headingStyleBlack,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 7.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: const Color.fromARGB(
+                                          255, 243, 243, 243),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.delivery_dining_rounded,
+                                          size: 25,
+                                          color: Colors.redAccent,
+                                        ),
+                                        Text(
+                                          'Free',
+                                          style: context.subTitleStyleGrey,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 150,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: const Color.fromARGB(
+                                          255, 243, 243, 243),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.alarm,
+                                          size: 25,
+                                          color: Colors.amber[900],
+                                        ),
+                                        Text(
+                                          '10 - 20 min',
+                                          style: context.subTitleStyleGrey,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 100,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      color: const Color.fromARGB(
+                                          255, 243, 243, 243),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.star_rate_rounded,
+                                          size: 25,
+                                          color: context.orange,
+                                        ),
+                                        Text(
+                                          '4.9',
+                                          // textAlign: TextAlign.center,
+                                          style: context.subTitleStyleGrey,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Positioned(
+                    top: 125,
+                    child: CircleAvatar(
+                      maxRadius: 50,
+                      minRadius: 39,
+                      backgroundImage: NetworkImage(
+                          'https://images.deliveryhero.io/image/foodpanda/bd/chain-swimlane/ch6kt-logo.jpg'),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -96,59 +225,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.center,
-                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //   children: [
-                //     // const SizedBox(width: 20),
-                //     ElevatedButton(
-                //       style: ElevatedButton.styleFrom(
-                //           elevation: 0,
-                //           fixedSize: const Size(20, 50),
-                //           shape: RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.circular(15)),
-                //           backgroundColor: Color.fromARGB(255, 255, 255, 255)),
-                //       onPressed: () {
-                //         Get.back();
-                //       },
-                //       child: const Icon(
-                //         Icons.arrow_back,
-                //         color: Colors.black,
-                //       ),
-                //     ),
-                //     const SizedBox(
-                //       width: 50,
-                //     ),
-                //     const SizedBox(width: 60),
-                //     ElevatedButton(
-                //       style: ElevatedButton.styleFrom(
-                //           elevation: 0,
-                //           fixedSize: const Size(20, 50),
-                //           shape: RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.circular(15)),
-                //           backgroundColor:
-                //               const Color.fromARGB(255, 255, 255, 255)),
-                //       onPressed: () {},
-                //       child: const Icon(
-                //         Icons.local_mall_outlined,
-                //         color: Colors.black,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-
-                SizedBox(
-                  height: 330,
-                  width: double.infinity,
-                  child: Opacity(
-                    opacity: 0.5,
-                    child: Image.network(
-                      'https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-
+                const SizedBox(height: 300),
                 const SizedBox(
                   height: 50,
                 ),
