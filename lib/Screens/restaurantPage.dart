@@ -110,9 +110,23 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             const SizedBox(height: 30),
-                            Text(
-                              'Chillox',
-                              style: context.headingStyleBlack,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Text(
+                                    'Chillox',
+                                    style: context.headingStyleBlack,
+                                  ),
+                                ),
+                                InkWell(
+                                  child: Icon(
+                                    Icons.info_rounded,
+                                    color: context.orange,
+                                  ),
+                                )
+                              ],
                             ),
                             Padding(
                               padding:

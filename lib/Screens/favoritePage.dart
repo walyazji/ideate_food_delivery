@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ideate_food_delivery/theme.dart';
 
+import 'cartPage.dart';
+import 'discoverPage.dart';
+import 'profilePage.dart';
+
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
 
@@ -11,6 +15,7 @@ class FavoriteScreen extends StatefulWidget {
 
 class _FavoriteScreenState extends State<FavoriteScreen>
     with TickerProviderStateMixin {
+  int selectButton = 1;
   List<String> links = [
     'https://img.freepik.com/free-photo/double-hamburger-isolated-white-background-fresh-burger-fast-food-with-beef-cream-cheese_90220-1192.jpg?w=2000',
     'https://www.abeautifulplate.com/wp-content/uploads/2015/08/the-best-homemade-margherita-pizza-1-4-500x375.jpg',
@@ -36,146 +41,230 @@ class _FavoriteScreenState extends State<FavoriteScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 231, 229, 229),
-                    ),
-                    child: const Icon(
-                      Icons.filter_list_rounded,
-                      size: 30,
-                      color: Colors.black,
-                    ),
-                  ),
-                  onTap: () => Get.back(),
-                ),
-                DropdownButton(
-                  value: val,
-                  borderRadius: BorderRadius.circular(15),
-                  alignment: Alignment.topCenter,
-                  dropdownColor: Colors.white,
-                  items: cities
-                      .map<DropdownMenuItem<String>>(
-                        (value) => DropdownMenuItem<String>(
-                          alignment: Alignment.center,
-                          value: value.toString(),
-                          child: Text(
-                            value,
-                            style: const TextStyle(color: Colors.deepOrange),
-                          ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(255, 231, 229, 229),
                         ),
-                      )
-                      .toList(),
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down,
-                    color: Color(0xFFFF6838),
-                  ),
-                  iconSize: 25,
-                  elevation: 1,
-                  style: context.subHeadingStyleOrange,
-                  onChanged: (newValue) {
-                    setState(() {
-                      val = newValue!;
-                    });
-                  },
+                        child: const Icon(
+                          Icons.filter_list_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ),
+                      onTap: () => Get.back(),
+                    ),
+                    DropdownButton(
+                      value: val,
+                      borderRadius: BorderRadius.circular(15),
+                      alignment: Alignment.topCenter,
+                      dropdownColor: Colors.white,
+                      items: cities
+                          .map<DropdownMenuItem<String>>(
+                            (value) => DropdownMenuItem<String>(
+                              alignment: Alignment.center,
+                              value: value.toString(),
+                              child: Text(
+                                value,
+                                style:
+                                    const TextStyle(color: Colors.deepOrange),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      icon: const Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Color(0xFFFF6838),
+                      ),
+                      iconSize: 25,
+                      elevation: 1,
+                      style: context.subHeadingStyleOrange,
+                      onChanged: (newValue) {
+                        setState(() {
+                          val = newValue!;
+                        });
+                      },
+                    ),
+                    InkWell(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: const Color.fromARGB(255, 231, 229, 229),
+                        ),
+                        child: const Icon(
+                          Icons.search_rounded,
+                          size: 30,
+                          color: Colors.black,
+                        ),
+                      ),
+                      // onTap: () => Get.to(),
+                    ),
+                  ],
                 ),
-                InkWell(
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                const SizedBox(height: 40),
+                Text(
+                  'Find Food Around Your ',
+                  style: context.headingStyleBlack,
+                ),
+                Text(
+                  'Area',
+                  style: context.headingStyleOrange,
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  width: 360,
+                  decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 231, 229, 229),
-                    ),
-                    child: const Icon(
-                      Icons.search_rounded,
-                      size: 30,
-                      color: Colors.black,
-                    ),
+                      borderRadius: BorderRadius.circular(30)),
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: selectedListView == 0
+                                ? context.orange
+                                : Color.fromARGB(255, 231, 229, 229),
+                            fixedSize: Size(180, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          setState(() {
+                            selectedListView = 0;
+                          });
+                        },
+                        child: Text(
+                          'Nearby Restaurant',
+                          style: selectedListView == 0
+                              ? context.subHeadingStyleWhite
+                              : context.subHeadingStyleOrange,
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: selectedListView == 1
+                                ? context.orange
+                                : Color.fromARGB(255, 231, 229, 229),
+                            fixedSize: Size(180, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15))),
+                        onPressed: () {
+                          setState(() {
+                            selectedListView = 1;
+                          });
+                        },
+                        child: Text(
+                          'Favorite',
+                          style: selectedListView == 1
+                              ? context.subHeadingStyleWhite
+                              : context.subHeadingStyleOrange,
+                        ),
+                      ),
+                    ],
                   ),
-                  // onTap: () => Get.to(),
                 ),
+                SizedBox(height: 20),
+                selectedListView == 0
+                    ? listViewRestaurant(context)
+                    : listViewFavorite(context)
               ],
             ),
-            const SizedBox(height: 40),
-            Text(
-              'Find Food Around Your ',
-              style: context.headingStyleBlack,
-            ),
-            Text(
-              'Area',
-              style: context.headingStyleOrange,
-            ),
-            const SizedBox(height: 10),
-            Container(
-              width: 360,
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 231, 229, 229),
-                  borderRadius: BorderRadius.circular(30)),
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: selectedListView == 0
-                            ? context.orange
-                            : Color.fromARGB(255, 231, 229, 229),
-                        fixedSize: Size(180, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    onPressed: () {
-                      setState(() {
-                        selectedListView = 0;
-                      });
-                    },
-                    child: Text(
-                      'Nearby Restaurant',
-                      style: selectedListView == 0
-                          ? context.subHeadingStyleWhite
-                          : context.subHeadingStyleOrange,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: BottomAppBar(
+                height: 70,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          selectButton = 0;
+                          Get.to(() => const DiscoverScreen());
+                        });
+                      },
+                      icon: Icon(
+                        Icons.restaurant_rounded,
+                        size: selectButton == 0 ? 35 : 25,
+                      ),
+                      color: selectButton == 0 ? context.orange : Colors.black,
                     ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: selectedListView == 1
-                            ? context.orange
-                            : Color.fromARGB(255, 231, 229, 229),
-                        fixedSize: Size(180, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    onPressed: () {
-                      setState(() {
-                        selectedListView = 1;
-                      });
-                    },
-                    child: Text(
-                      'Favorite',
-                      style: selectedListView == 1
-                          ? context.subHeadingStyleWhite
-                          : context.subHeadingStyleOrange,
+                    IconButton(
+                      onPressed: () {
+                        Get.to(const FavoriteScreen());
+                        setState(() {
+                          selectButton = 1;
+                        });
+                      },
+                      icon: selectButton == 1
+                          ? Icon(
+                              Icons.star_rate_rounded,
+                              size: selectButton == 1 ? 35 : 25,
+                            )
+                          : Icon(
+                              Icons.star_border_rounded,
+                              size: selectButton == 1 ? 35 : 25,
+                            ),
+                      color: selectButton == 1 ? context.orange : Colors.black,
                     ),
-                  ),
-                ],
+                    IconButton(
+                      onPressed: () {
+                        Get.to(const CartScreen());
+                        setState(() {
+                          selectButton = 2;
+                        });
+                      },
+                      icon: selectButton == 2
+                          ? Icon(
+                              Icons.local_mall_rounded,
+                              size: selectButton == 2 ? 35 : 25,
+                            )
+                          : Icon(
+                              Icons.local_mall_outlined,
+                              size: selectButton == 2 ? 35 : 25,
+                            ),
+                      color: selectButton == 2 ? context.orange : Colors.black,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          selectButton = 3;
+                        });
+                        Get.to(const ProfileScreen());
+                      },
+                      icon: selectButton == 3
+                          ? Icon(
+                              Icons.person,
+                              size: selectButton == 3 ? 35 : 25,
+                            )
+                          : Icon(
+                              Icons.person_outline_rounded,
+                              size: selectButton == 3 ? 35 : 25,
+                            ),
+                      color: selectButton == 3 ? context.orange : Colors.black,
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            selectedListView == 0
-                ? listViewRestaurant(context)
-                : listViewFavorite(context)
           ],
         ),
       ),
