@@ -310,9 +310,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       Container(
                         width: double.infinity,
                         margin: const EdgeInsets.only(left: 20, right: 20),
-                        // padding: EdgeInsets.only(right: 4, left: 4),
-
-                        // height: 600,
                         child: GridView.builder(
                           shrinkWrap: true,
                           itemCount: categories.length + 1,
@@ -320,8 +317,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             childAspectRatio: 3 / 5.4,
-                            // crossAxisSpacing: 1,
-                            // mainAxisSpacing: 2.0,
                           ),
                           itemBuilder: (BuildContext context, int index) {
                             return InkWell(
@@ -343,7 +338,6 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                         topRight: Radius.circular(30),
                                       ),
                                       child: Image.network(
-                                        // height: 150,
                                         'https://www.freepnglogos.com/uploads/burger-png/download-hamburger-burger-png-image-png-image-pngimg-15.png',
                                         fit: BoxFit.cover,
                                       ),

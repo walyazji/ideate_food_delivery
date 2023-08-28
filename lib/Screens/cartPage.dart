@@ -125,7 +125,6 @@ class _CartScreenState extends State<CartScreen> {
                     itemBuilder: (ctx, index) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Transform.scale(
                             scale: 1.4,
@@ -393,7 +392,6 @@ class _CartScreenState extends State<CartScreen> {
                       ],
                     ),
                   ),
-                  // SizedBox(height: 10)
                 ],
               ),
             ),

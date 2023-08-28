@@ -276,7 +276,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
       // كان كونتينر
       // ignore: sized_box_for_whitespace
       child: Container(
-        // padding: EdgeInsets.only(left: ),
         width: 380,
         child: ListView.builder(
             itemCount: categories.length,
@@ -286,14 +285,12 @@ class _FavoriteScreenState extends State<FavoriteScreen>
               return InkWell(
                 onTap: () {},
                 child: Container(
-                  // padding: EdgeInsets.only(left: 20),
                   alignment: Alignment.center,
                   child: Card(
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Column(children: [
-                      // const SizedBox(height: 10),
                       ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -301,7 +298,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                         ),
                         child: Image.network(
                           links[0],
-                          // height: 200,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -314,7 +310,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                               children: [
                                 Row(
                                   children: [
-                                    // const SizedBox(width: 5),
                                     Text(
                                       'Chillox Burger',
                                       style: context.subHeadingStyleBlack,
@@ -338,7 +333,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                                       style: context.titleStyleGrey,
                                     ),
                                     const SizedBox(width: 185),
-                                    // const SizedBox(width: 140),
                                     const Text('10 min')
                                   ],
                                 ),
@@ -361,7 +355,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
       // كان كونتينر
       // ignore: sized_box_for_whitespace
       child: Container(
-        // padding: EdgeInsets.only(left: ),
         width: 380,
         child: ListView.builder(
             itemCount: categories.length,
@@ -371,14 +364,12 @@ class _FavoriteScreenState extends State<FavoriteScreen>
               return InkWell(
                 onTap: () {},
                 child: Container(
-                  // padding: EdgeInsets.only(left: 20),
                   alignment: Alignment.center,
                   child: Card(
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Column(children: [
-                      // const SizedBox(height: 10),
                       ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -386,7 +377,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                         ),
                         child: Image.network(
                           links[1],
-                          // height: 200,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -399,7 +389,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                               children: [
                                 Row(
                                   children: [
-                                    // const SizedBox(width: 5),
                                     Text(
                                       'Pizza Hut',
                                       style: context.subHeadingStyleBlack,
@@ -423,7 +412,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                                       style: context.titleStyleGrey,
                                     ),
                                     const SizedBox(width: 185),
-                                    // const SizedBox(width: 140),
                                     const Text('10 min')
                                   ],
                                 ),
