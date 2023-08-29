@@ -1,16 +1,16 @@
-#project title
+#project title=>
 Ideate Food Delivery
 
-#project description
+#project description=>
 A delivery app that provides food at your door step in very little time and with the best packaging. Providing food from every famous food place near you. Now they are introducing a subscription plan to make its users order food with the best user experience.
 
 
-#perview application
+#perview application=>
 Below are pictures showing the application screens
-
-
-
-
+.
+.
+.
+.
 
 ![1](https://github.com/walyazji/ideate_food_delivery/assets/80062908/1dc08482-eb04-4afd-bab6-20d1eee63d55)
 ![2](https://github.com/walyazji/ideate_food_delivery/assets/80062908/921e5a54-38d0-492d-8617-dc58234430e7)
